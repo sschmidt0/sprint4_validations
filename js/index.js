@@ -12,6 +12,7 @@ const searchForm = document.getElementById('searchForm');
 const loginForm = document.getElementById('loginForm');
 const registerForm = document.getElementById('registerForm');
 
+let passwordValue = passwordRegister.value;
 
 const handleSearch = () => {
   searchForm.classList.remove('is-invalid');
@@ -47,7 +48,6 @@ const handleSubmitLogin = () => {
   if (passwordLogin.value == '') {
     passwordLogin.classList.add('is-invalid');
     document.getElementById('errorPasswordLogin').innerHTML = "Introdueix la paraula de pas";
-    passwordLogin.value="cap paraula de pas";
     errors = true;
   }
 
@@ -64,45 +64,38 @@ const handleSubmitRegister = () => {
   if (firstName.value == '') {
     firstName.classList.add('is-invalid');
     document.getElementById('errorFirstname').textContent = "Introdueix un nom";
-    firstName.value="cap nom";
     errors = true;
   }
 
   if (surname.value == '') {
     surname.classList.add('is-invalid');
     document.getElementById('errorSurname').textContent = "Introdueix almenys un cognom";
-    surname.value="cap cognom";
     errors = true;
   }
 
   if (emailRegister.value == '') {
     emailRegister.classList.add('is-invalid');
     document.getElementById('errorEmailRegister').textContent = "Introdueix un correu electrònic";
-    emailRegister.value="cap correu";
     errors = true;
   } else if (!validar_email(emailRegister.value)) {
     emailRegister.classList.add('is-invalid');
     document.getElementById('errorEmailRegister').textContent = "El correu no és vàlid";
-    emailRegister.value="correu invàlid";
     errors = true;
   }
 
   if (passwordRegister.value == '') {
     passwordRegister.classList.add('is-invalid');
     document.getElementById('errorPasswordRegister').textContent = "Introdueix una paraula de pas";
-    passwordRegister.value="cap paraula de pas";
     errors = true;
   }
 
   if (passwordRegister2.value !== passwordRegister.value) {
     passwordRegister2.classList.add('is-invalid');
     document.getElementById('errorPasswordRegister2').textContent = "Les paraules de pas no coincideixen";
-    passwordRegister2.value="cap paraula de pas";
     errors = true;
   } else if (passwordRegister2.value == '') {
     passwordRegister2.classList.add('is-invalid');
     document.getElementById('errorPasswordRegister2').textContent = "Confirma la paraula de pas";
-    passwordRegister2.value="les paraules de pas no coincideixen"
     errors = true;
   }
 
