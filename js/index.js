@@ -12,6 +12,25 @@ const searchForm = document.getElementById('searchForm');
 const loginForm = document.getElementById('loginForm');
 const registerForm = document.getElementById('registerForm');
 
+let passwordValue = passwordRegister.value;
+
+const hasNumber = (str) => {
+  let booleanNum = false;
+  [...str].forEach(char => {
+    if (!isNaN(parseInt(char))) booleanNum = true;
+  });
+  return booleanNum;
+}
+
+const hasMajuscule = (str) => {
+  let booleanMaj = false;
+  [...str].forEach(char => {
+    console.log(char);
+    if (char === char.toUpperCase()) booleanMaj = true;
+  });
+  return booleanMaj;
+}
+
 
 const handleSearch = () => {
   searchForm.classList.remove('is-invalid');
@@ -91,6 +110,18 @@ const handleSubmitRegister = () => {
     passwordRegister.classList.add('is-invalid');
     document.getElementById('errorPasswordRegister').textContent = "Introdueix una paraula de pas";
     passwordRegister.value="cap paraula de pas";
+    errors = true;
+  } else if (passwordRegister.value.length < 8) {
+    passwordRegister.classList.add('is-invalid');
+    document.getElementById('errorPasswordRegister').textContent = "La paraula de pas ha de tenir almenys 8 caràcters";
+    errors = true;
+  } else if (!hasNumber(passwordRegister.value)) {
+    passwordRegister.classList.add('is-invalid');
+    document.getElementById('errorPasswordRegister').textContent = "La paraula de pas ha de tenir almenys 1 nombre";
+    errors = true;
+  } else if (!hasMajuscule(passwordRegister.value)) {
+    passwordRegister.classList.add('is-invalid');
+    document.getElementById('errorPasswordRegister').textContent = "La paraula de pas ha de tenir almenys una majúscula";
     errors = true;
   }
 
