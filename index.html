@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap: CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Utilitzar Bootstrap des d’arxius descarregats
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  -->
+
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css">
+
+  <title>Pàgina amb Bootstrap</title>
+</head>
+<body>
+
+  <div class="page-bg">
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+          <!-- BRAND -->
+          <a class="navbar-brand" id="logo" href="#">
+              <img src="logo/logo.png" alt="Logo de Sarah Schmidt" id="img-logo">
+          </a>
+          <!-- TOGGLER -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <!-- BUTTONS -->
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <!-- trigger modal login -->
+                <button type="button" class="btn btn-link styled-link" data-bs-toggle="modal" data-bs-target="#login">
+                  Iniciar sessió
+                </button>
+              </li>
+              <li class="nav-item">
+                <!-- trigger modal register -->
+                <button type="button" class="btn btn-link styled-link" data-bs-toggle="modal" data-bs-target="#register">
+                  Registre
+                </button>
+              </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" id="searchForm" onsubmit="return handleSearch()">
+              <input class="form-control mr-sm-2" type="search" placeholder="Cercar" aria-label="Search" id="searchInput">
+              <div class="invalid-feedback" id="errorSearch"></div>
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search">Cercar</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- LOGIN -->
+    <div class="modal fade" id="login" tabindex="-1" aria-labelledby="loginLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="loginLabel">Iniciar sessió</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <form onsubmit="return handleSubmitLogin()" id="loginForm">
+            <div class="modal-body">
+              <div class="form-group mb-3">
+                <label for="emailLogin" class="form-label">Correu</label>
+                <input type="email" class="form-control" id="emailLogin" aria-describedby="emailHelp">
+                <div class="invalid-feedback" id="errorEmailLogin"></div>
+              </div>
+              <div class="form-group mb-3">
+                <label for="passwordLogin" class="form-label">Paraula de pas</label>
+                <input type="password" class="form-control" id="passwordLogin">
+                <div class="invalid-feedback" id="errorPasswordLogin"></div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" id="login">Iniciar sessió</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- REGISTER -->
+    <div class="modal fade" id="register" tabindex="-1" aria-labelledby="registerLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="registerLabel">Registre</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form onsubmit="return handleSubmitRegister()" id="registerForm">
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="firstname" class="form-label">Nom</label>
+                <input type="text" class="form-control" id="firstname">
+                <div class="invalid-feedback" id="errorFirstname"></div>
+              </div>
+              <div class="mb-3">
+                <label for="surname" class="form-label">Cognom</label>
+                <input type="text" class="form-control" id="surname">
+                <div class="invalid-feedback" id="errorSurname"></div>
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Correu</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                <div class="invalid-feedback" id="errorEmailRegister"></div>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Paraula de pas</label>
+                <input type="password" class="form-control" id="password">
+                <div class="invalid-feedback" id="errorPasswordRegister"></div>
+              </div>
+              <div class="mb-3">
+                <label for="password2" class="form-label">Confirmació de la paraula de pas</label>
+                <input type="password" class="form-control" id="password2">
+                <div class="invalid-feedback" id="errorPasswordRegister2"></div>
+              </div>
+              <div class="form-group mb3">
+                <label for="province">Província</label>
+                  <select id="province" class="form-control">
+                    <option selected value=""></option>
+                    <option>Barcelona</option>
+                    <option>Girona</option>
+                    <option>Tarragona</option>
+                    <option>Lleida</option>
+                  </select>
+                <div class="invalid-feedback" id="errorProvince"></div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" id="register">Registra't</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="content">
+      <section class="container">
+        <h2 class="text-center mt-3 mb-4">La natació en la història dels Jocs Olímpics</h2>
+        <div class="row">
+          <div class="col-md">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras turpis sapien, gravida quis diam in, ornare imperdiet augue. Vivamus vitae lacus mauris. Sed congue suscipit massa, eget dictum urna convallis quis. Phasellus luctus leo non nisi viverra ultricies. Cras pharetra lectus sed ipsum dapibus, sit amet laoreet elit pulvinar. Aenean vitae mauris euismod, elementum lectus ultricies, hendrerit nibh. Maecenas iaculis sodales felis, sed vehicula velit hendrerit ut. Vivamus vitae venenatis quam, in luctus ipsum. Etiam molestie, urna eget ultrices ornare, sapien nisl gravida lacus, at ultrices libero felis iaculis turpis. Donec non lacus sollicitudin, tincidunt orci quis, elementum urna.</p>
+          </div>
+          <div class="col-md">
+            <p>Phasellus cursus imperdiet nibh, id fringilla urna posuere vitae. Maecenas sed ante fermentum urna euismod malesuada. Vestibulum tempor risus leo. Curabitur vehicula molestie mauris eget auctor. In bibendum auctor erat, eu vulputate leo faucibus eu. Proin vehicula eros at malesuada laoreet. Nulla vitae mi condimentum elit tincidunt cursus. Curabitur ante orci, convallis sit amet sapien a, tincidunt ultricies leo. Suspendisse ac lectus quis dolor euismod tempus. Cras egestas nunc dui, ut mollis elit sagittis vitae. Nunc pretium elementum augue, ut mattis tellus congue vitae. Ut rutrum purus vitae pretium mattis.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <div className="copyright">
+        <span>&copy; 2021 Sarah Schmidt</span>
+        <span>Sprint 4</span>
+      </div>
+    </footer>
+  </div>
+
+
+  <!-- Bootstrap: JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+  <!-- Utilitzar Bootstrap des d’arxius descarregats
+  <script src="js/bootstrap.min.js"></script>
+  -->
+
+  <script src="js/index.js"></script>
+</body>
+</html>
