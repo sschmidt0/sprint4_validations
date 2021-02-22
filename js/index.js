@@ -12,6 +12,24 @@ const searchForm = document.getElementById('searchForm');
 const loginForm = document.getElementById('loginForm');
 const registerForm = document.getElementById('registerForm');
 
+let passwordValue = passwordRegister.value;
+
+const hasNumber = (str) => {
+  let booleanNum = false;
+  [...str].forEach(char => {
+    if (!isNaN(parseInt(char))) booleanNum = true;
+  });
+  return booleanNum;
+}
+
+const hasMajuscule = (str) => {
+  let booleanMaj = false;
+  [...str].forEach(char => {
+    if (char === char.toUpperCase()) booleanMaj = true;
+  });
+  return booleanMaj;
+}
+
 
 const handleSearch = () => {
   searchForm.classList.remove('is-invalid');
