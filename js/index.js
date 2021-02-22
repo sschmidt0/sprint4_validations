@@ -12,8 +12,6 @@ const searchForm = document.getElementById('searchForm');
 const loginForm = document.getElementById('loginForm');
 const registerForm = document.getElementById('registerForm');
 
-// for nivell 2 validation
-let passwordValue = passwordRegister.value;
 
 const handleSearch = () => {
   searchForm.classList.remove('is-invalid');
