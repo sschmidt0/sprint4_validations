@@ -19,10 +19,12 @@ const handleSearch = () => {
   if (searchInput.value == '') {
     searchInput.classList.add('is-invalid');
     document.getElementById("errorSearch").textContent = "Introdueix una paraula per cercar";
+    searchInput.value="No hi ha res a cercar";
     error = true;
   } else if (searchInput.value.length < 3) {
     searchInput.classList.add('is-invalid');
     document.getElementById("errorSearch").textContent = "La paraula ha de tenir almenys 3 caràcters";
+    searchInput.value="Paraula massa curta";
     error = true;
   }
 
@@ -37,10 +39,12 @@ const handleSubmitLogin = () => {
   if (emailLogin.value == '') {
     emailLogin.classList.add('is-invalid');
     document.getElementById('errorEmailLogin').innerHTML = "Introdueix el correu electrònic";
+    emailLogin.value="cap correu";
     errors = true;
   } else if (!validar_email(emailLogin.value)) {
     emailLogin.classList.add('is-invalid');
     document.getElementById('errorEmailLogin').innerHTML = "El correu no és vàlid";
+    emailLogin.value="correu invàlid";
     errors = true;
   }
 
@@ -92,6 +96,21 @@ const handleSubmitRegister = () => {
     document.getElementById('errorPasswordRegister').textContent = "Introdueix una paraula de pas";
     passwordRegister.value="cap paraula de pas";
     errors = true;
+  } else if (passwordRegister.value.length < 8) {
+    passwordRegister.classList.add('is-invalid');
+    document.getElementById('errorPasswordRegister').textContent = "La paraula de pas ha de tenir almenys 8 caràcters";
+    passwordRegister.value="massa curta";
+    errors = true;
+  } else if (!hasNumber(passwordRegister.value)) {
+    passwordRegister.classList.add('is-invalid');
+    document.getElementById('errorPasswordRegister').textContent = "La paraula de pas ha de tenir almenys 1 nombre";
+    passwordRegister.value="cap nombre";
+    errors = true;
+  } else if (!hasMajuscule(passwordRegister.value)) {
+    passwordRegister.classList.add('is-invalid');
+    document.getElementById('errorPasswordRegister').textContent = "La paraula de pas ha de tenir almenys una majúscula";
+    passwordRegister.value="cap majúscula";
+    errors = true;
   }
 
   if (passwordRegister2.value !== passwordRegister.value) {
@@ -102,13 +121,14 @@ const handleSubmitRegister = () => {
   } else if (passwordRegister2.value == '') {
     passwordRegister2.classList.add('is-invalid');
     document.getElementById('errorPasswordRegister2').textContent = "Confirma la paraula de pas";
-    passwordRegister2.value="les paraules de pas no coincideixen"
+    passwordRegister2.value="les paraules de pas no coincideixen";
     errors = true;
   }
 
   if (province.value == '') {
     province.classList.add('is-invalid');
     document.getElementById('errorProvince').textContent = "Selecciona una província";
+    province.value="Cap província";
     errors = true;
   }
 
